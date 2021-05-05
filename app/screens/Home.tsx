@@ -16,7 +16,7 @@ import colors from '../constants/colors';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.darkBackground,
+    backgroundColor: colors.black,
     justifyContent: 'space-between',
   },
   heading: {
@@ -29,10 +29,7 @@ const styles = StyleSheet.create({
 function Home(): JSX.Element {
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar
-        barStyle="light-content"
-        backgroundColor={colors.darkBackground}
-      />
+      <StatusBar barStyle="light-content" backgroundColor={colors.black} />
 
       <Text style={styles.heading}>Crunch Clock</Text>
       <View>
