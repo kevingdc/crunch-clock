@@ -1,8 +1,9 @@
 import React from 'react';
-import {View, Text, StyleSheet, Button, Dimensions} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 import colors from '../constants/colors';
 import PrimaryButton from './PrimaryButton';
+import TextButton from './TextButton';
 
 const styles = StyleSheet.create({
   container: {
@@ -13,15 +14,16 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.white,
+    fontSize: 16,
   },
 });
 
 function BottomBar(): JSX.Element {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Reset</Text>
+      <TextButton onPress={() => console.log('Reset')} text="Reset" />
       <PrimaryButton />
-      <Text style={styles.text}>Next</Text>
+      <TextButton onPress={() => console.log('Next')} text="Next" />
     </View>
   );
 }
