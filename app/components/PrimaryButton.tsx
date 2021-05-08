@@ -1,7 +1,9 @@
-import React from 'react';
-import {TouchableOpacity, View, Text, StyleSheet} from 'react-native';
+import React, {useContext} from 'react';
+import {TouchableOpacity, StyleSheet} from 'react-native';
 import Emoji from 'react-native-emoji';
 
+import {ClockContext} from '../context/clockContext';
+import Type from '../context/type';
 import colors from '../constants/colors';
 
 const buttonSize = 60;
@@ -21,8 +23,12 @@ const styles = StyleSheet.create({
 });
 
 function PrimaryButton(): JSX.Element {
+  const {dispatch} = useContext<ClockContextType>(ClockContext);
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => dispatch({type: Type.NEXT_SET})}>
       <Emoji name="muscle" style={styles.emoji} />
     </TouchableOpacity>
   );

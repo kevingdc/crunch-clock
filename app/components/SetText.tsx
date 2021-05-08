@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Text, StyleSheet} from 'react-native';
+
+import {ClockContext} from '../context/clockContext';
 import colors from '../constants/colors';
 
 const styles = StyleSheet.create({
@@ -12,7 +14,10 @@ const styles = StyleSheet.create({
 });
 
 function SetText(): JSX.Element {
-  return <Text style={styles.text}>Set #1</Text>;
+  const {state} = useContext<ClockContextType>(ClockContext);
+  const text = state.set > 0 && `Set #${state.set}`;
+
+  return <Text style={styles.text}>{text}</Text>;
 }
 
 export default SetText;

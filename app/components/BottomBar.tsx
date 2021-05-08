@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, StyleSheet} from 'react-native';
 
+import {ClockContext} from '../context/clockContext';
+import Type from '../context/type';
 import colors from '../constants/colors';
 import PrimaryButton from './PrimaryButton';
 import TextButton from './TextButton';
@@ -19,11 +21,16 @@ const styles = StyleSheet.create({
 });
 
 function BottomBar(): JSX.Element {
+  const {dispatch} = useContext<ClockContextType>(ClockContext);
+
   return (
     <View style={styles.container}>
-      <TextButton onPress={() => console.log('Reset')} text="Reset" />
+      <TextButton onPress={() => dispatch({type: Type.RESET})} text="Reset" />
       <PrimaryButton />
-      <TextButton onPress={() => console.log('Next')} text="Next" />
+      <TextButton
+        onPress={() => dispatch({type: Type.NEXT_WORKOUT})}
+        text="Next"
+      />
     </View>
   );
 }

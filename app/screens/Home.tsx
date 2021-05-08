@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {SafeAreaView, StatusBar, StyleSheet, Text, View} from 'react-native';
 
 import TimeDisplay from '../components/TimeDisplay';
 import SetText from '../components/SetText';

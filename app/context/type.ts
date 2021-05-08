@@ -1,0 +1,9 @@
+const Type = {
+  TOGGLE_CLOCK: 'TOGGLE CLOCK',
+  NEXT_SET: 'NEXT_SET',
+  NEXT_WORKOUT: 'NEXT_WORKOUT',
+  RESET: 'RESET',
+  INCREMENT_TIME: 'INCREMENT_TIME',
+} as const;
+
+export default Type;

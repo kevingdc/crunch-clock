@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   View,
   Text,
@@ -7,16 +7,14 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import {ClockContext} from '../context/clockContext';
+import Type from '../context/type';
 import colors from '../constants/colors';
 
-const screen = Dimensions.get('screen');
-
-const circleSize = screen.height * 0.25;
+const circleSize = Dimensions.get('screen').height * 0.25;
 
 const styles = StyleSheet.create({
   container: {
-    // width: screen.width
-    // margin: 30,
     alignItems: 'center',
   },
   circle: {
@@ -37,8 +35,12 @@ const styles = StyleSheet.create({
 });
 
 function TimeDisplay(): JSX.Element {
+  const {dispatch} = useContext<ClockContextType>(ClockContext);
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => dispatch({type: Type.TOGGLE_CLOCK})}>
       <View style={styles.circle}>
         <Text style={styles.text} numberOfLines={1} adjustsFontSizeToFit>
           1:30
