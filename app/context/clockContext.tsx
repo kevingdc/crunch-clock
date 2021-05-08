@@ -15,7 +15,7 @@ const initialState = {
 
 export const ClockContext = createContext<ClockContextType>({
   state: initialState,
-  dispatch: () => {},
+  dispatch: () => [],
 });
 
 export function ClockProvider({children}: Props): JSX.Element {
