@@ -1,6 +1,5 @@
 import React, {useContext} from 'react';
 import {TouchableOpacity, StyleSheet, Image} from 'react-native';
-import Emoji from 'react-native-emoji';
 
 import {ClockContext} from '../context/clockContext';
 import Type from '../context/type';
@@ -33,7 +32,6 @@ function PrimaryButton(): JSX.Element {
     <TouchableOpacity
       style={styles.container}
       onPress={() => dispatch({type: Type.NEXT_SET})}>
-      {/* <Emoji name="muscle" style={styles.emoji} /> */}
       <Image
         source={require('../assets/images//bicep/bicep.png')}
         style={styles.image}
