@@ -61,7 +61,7 @@ function TimeDisplay(): JSX.Element {
       onPress={() => dispatch({type: Type.TOGGLE_CLOCK})}>
       <View style={styles.circle}>
         <Text style={styles.text} numberOfLines={1} adjustsFontSizeToFit>
-          {formatTime(state.time)}
+          {formatTime(state.elapsedTime)}
         </Text>
       </View>
     </TouchableOpacity>

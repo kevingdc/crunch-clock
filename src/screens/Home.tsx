@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.black,
     justifyContent: 'space-between',
+    paddingVertical: 5,
   },
   heading: {
     color: colors.white,

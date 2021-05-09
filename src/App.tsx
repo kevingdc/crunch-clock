@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {ClockProvider} from './app/context/clockContext';
-import Home from './app/screens/Home';
+import {ClockProvider} from './context/clockContext';
+import Home from './screens/Home';
 
 function App(): JSX.Element {
   return (

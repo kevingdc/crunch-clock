@@ -2,7 +2,7 @@ type Status = 'NOT_STARTED' | 'RUNNING' | 'PAUSED';
 
 type State = {
   status: Status;
-  time: number;
+  elapsedTime: number;
   set: number;
 };
 
