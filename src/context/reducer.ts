@@ -20,7 +20,7 @@ function handleNotStarted(state: State, action: Action): State {
         ...state,
         status: Status.RUNNING,
         set: 1,
-        startTime: getNewTime(),
+        startTime: Date.now(),
         elapsedTime: 0,
       };
     default:
@@ -40,7 +40,7 @@ function handleRunning(state: State, action: Action): State {
       return handleReset(state);
     case Type.INCREMENT_TIME:
       let status: Status = Status.RUNNING;
-      let elapsedTime = getNewTime() - state.startTime;
+      let elapsedTime = Date.now() - state.startTime;
 
       // If elapsedTime reaches 1 hour, stop
       const maxTime = 3600000;
@@ -62,12 +62,11 @@ function handleRunning(state: State, action: Action): State {
 function handlePaused(state: State, action: Action): State {
   switch (action.type) {
     case Type.TOGGLE_CLOCK:
+      const newTime = Date.now();
       return {
         ...state,
         status: Status.RUNNING,
-        startTime: state.elapsedTime
-          ? getNewTime() - state.elapsedTime
-          : getNewTime(),
+        startTime: state.elapsedTime ? newTime - state.elapsedTime : newTime,
       };
     case Type.NEXT_SET:
       return handleNextSet(state);
@@ -84,13 +83,13 @@ function handleNextSet(state: State): State {
   return {
     ...state,
     set: state.set + 1,
-    startTime: getNewTime(),
+    startTime: Date.now(),
     elapsedTime: 0,
   };
 }
 
 function handleNextWorkout(state: State): State {
-  return {...state, set: 1, startTime: getNewTime(), elapsedTime: 0};
+  return {...state, set: 1, startTime: Date.now(), elapsedTime: 0};
 }
 
 function handleReset(state: State): State {
@@ -101,10 +100,6 @@ function handleReset(state: State): State {
     startTime: 0,
     elapsedTime: 0,
   };
-}
-
-function getNewTime(): number {
-  return new Date().getTime();
 }
 
 export default reducer;
