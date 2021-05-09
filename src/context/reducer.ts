@@ -39,20 +39,9 @@ function handleRunning(state: State, action: Action): State {
     case Type.RESET:
       return handleReset(state);
     case Type.INCREMENT_TIME:
-      let status: Status = Status.RUNNING;
-      let elapsedTime = Date.now() - state.startTime;
-
-      // If elapsedTime reaches 1 hour, stop
-      const maxTime = 3600000;
-      if (elapsedTime >= maxTime) {
-        status = Status.NOT_STARTED;
-        elapsedTime = maxTime;
-      }
-
       return {
         ...state,
-        status,
-        elapsedTime,
+        elapsedTime: Math.min(Date.now() - state.startTime, 3600000),
       };
     default:
       return state;
