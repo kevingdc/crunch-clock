@@ -38,7 +38,7 @@ function handleRunning(state: State, action: Action): State {
       return {
         ...state,
         elapsedTime,
-        status: elapsedTime < 60 * 60 ? Status.RUNNING : Status.NOT_STARTED,
+        status: elapsedTime < 3600 ? Status.RUNNING : Status.NOT_STARTED,
       };
     default:
       return state;

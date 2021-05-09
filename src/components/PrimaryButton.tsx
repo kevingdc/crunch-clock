@@ -16,9 +16,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  emoji: {
-    fontSize: 24,
-  },
   image: {
     width: buttonSize,
     height: buttonSize,
