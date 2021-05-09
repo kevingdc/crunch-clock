@@ -9,6 +9,7 @@ type Props = {
 
 const initialState = {
   status: Status.NOT_STARTED,
+  startTime: 0,
   elapsedTime: 0,
   set: 0,
 };

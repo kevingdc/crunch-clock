@@ -10,12 +10,12 @@ export default function useInterval(
     // start
     if (!running) return;
     setRunning(true);
-    const t = setInterval(f, delay);
+    const intervalId = setInterval(f, delay);
 
     // stop
     return () => {
       setRunning(false);
-      clearInterval(t);
+      clearInterval(intervalId);
     };
   }, [f, running, delay]);
 

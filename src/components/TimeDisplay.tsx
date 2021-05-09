@@ -69,10 +69,10 @@ function TimeDisplay(): JSX.Element {
 }
 
 function formatTime(time: number): string {
-  const m = Math.floor(time / 60);
+  const m = Math.floor(time / 1000 / 60);
   const mString = m.toString();
 
-  const sString = Math.floor(time % 60).toString();
+  const sString = Math.floor((time / 1000) % 60).toString();
 
   if (m > 0) {
     return `${mString}:${sString.padStart(2, '0')}`;
