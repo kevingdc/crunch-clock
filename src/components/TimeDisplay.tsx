@@ -41,7 +41,7 @@ function TimeDisplay(): JSX.Element {
   const {state, dispatch} = useContext<ClockContextType>(ClockContext);
   const [start, stop, running] = useInterval(() => {
     dispatch({type: Type.INCREMENT_TIME});
-  }, 1000);
+  }, 200);
 
   useEffect(() => {
     if (state.status === Status.RUNNING) {
@@ -69,12 +69,13 @@ function TimeDisplay(): JSX.Element {
 }
 
 function formatTime(time: number): string {
-  const m = Math.floor(time / 1000 / 60);
-  const mString = m.toString();
+  const secs = Math.floor(time / 1000);
+  const sString = Math.floor(secs % 60).toString();
 
-  const sString = Math.floor((time / 1000) % 60).toString();
+  const mins = Math.floor(secs / 60);
+  const mString = mins.toString();
 
-  if (m > 0) {
+  if (mins > 0) {
     return `${mString}:${sString.padStart(2, '0')}`;
   } else {
     return sString;
