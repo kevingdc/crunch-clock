@@ -39,9 +39,13 @@ function handleRunning(state: State, action: Action): State {
     case Type.RESET:
       return handleReset(state);
     case Type.INCREMENT_TIME:
+      const elapsedTime = Math.min(Date.now() - state.startTime, 3600000);
+      const status = elapsedTime < 3600000 ? Status.RUNNING : Status.PAUSED;
+
       return {
         ...state,
-        elapsedTime: Math.min(Date.now() - state.startTime, 3600000),
+        status,
+        elapsedTime,
       };
     default:
       return state;
@@ -71,6 +75,7 @@ function handlePaused(state: State, action: Action): State {
 function handleNextSet(state: State): State {
   return {
     ...state,
+    status: Status.RUNNING,
     set: state.set + 1,
     startTime: Date.now(),
     elapsedTime: 0,
@@ -78,7 +83,13 @@ function handleNextSet(state: State): State {
 }
 
 function handleNextWorkout(state: State): State {
-  return {...state, set: 1, startTime: Date.now(), elapsedTime: 0};
+  return {
+    ...state,
+    status: Status.RUNNING,
+    set: 1,
+    startTime: Date.now(),
+    elapsedTime: 0,
+  };
 }
 
 function handleReset(state: State): State {

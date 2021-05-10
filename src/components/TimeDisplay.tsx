@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -39,21 +39,28 @@ const styles = StyleSheet.create({
 
 function TimeDisplay(): JSX.Element {
   const {state, dispatch} = useContext<ClockContextType>(ClockContext);
-  const [start, stop, running] = useInterval(() => {
-    dispatch({type: Type.INCREMENT_TIME});
-  }, 200);
+  const status = state.status;
+  const [visible, setVisible] = useState(true);
+  const [start, stop, running] = useInterval(
+    () => {
+      if (status === Status.RUNNING) {
+        setVisible(true);
+        dispatch({type: Type.INCREMENT_TIME});
+      } else if (status === Status.PAUSED) {
+        setVisible(!visible);
+      }
+    },
+    status === Status.RUNNING ? 200 : 500,
+  );
 
   useEffect(() => {
-    if (state.status === Status.RUNNING) {
-      if (!running) {
-        start();
-      }
-    } else {
+    if (status === Status.NOT_STARTED) {
+      setVisible(true);
       stop();
+    } else if (!running) {
+      start();
     }
-
-    return () => stop();
-  }, [state, start, stop, running]);
+  }, [status, start, stop, running]);
 
   return (
     <TouchableOpacity
@@ -61,7 +68,7 @@ function TimeDisplay(): JSX.Element {
       onPress={() => dispatch({type: Type.TOGGLE_CLOCK})}>
       <View style={styles.circle}>
         <Text style={styles.text} numberOfLines={1} adjustsFontSizeToFit>
-          {formatTime(state.elapsedTime)}
+          {visible && formatTime(state.elapsedTime)}
         </Text>
       </View>
     </TouchableOpacity>
