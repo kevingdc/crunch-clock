@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import {ClockContext} from '../context/clockContext';
-import useInterval from '../util/useInterval';
+import useInterval from '../hooks/useInterval';
 import Status from '../context/status';
 import Type from '../context/type';
 import colors from '../constants/colors';
