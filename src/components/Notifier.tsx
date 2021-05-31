@@ -1,7 +1,7 @@
 import {useContext} from 'react';
 
 import {ClockContext} from '../context/clockContext';
-import Status from '../context/status';
+import {Status} from '../../typings/enums';
 import useAppState from '../hooks/useAppState';
 import {pushNotification, clearNotifications} from '../util/notifications';
 
@@ -13,9 +13,9 @@ function Notifier() {
   if (isActive) {
     clearNotifications();
   } else {
-    if (status === Status.RUNNING) {
+    if (status === Status.Running) {
       pushNotification('Running. Tap to open.');
-    } else if (status === Status.PAUSED) {
+    } else if (status === Status.Paused) {
       pushNotification('Paused. Tap to open.');
     }
   }

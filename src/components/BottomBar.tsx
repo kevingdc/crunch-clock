@@ -2,8 +2,7 @@ import React, {useContext} from 'react';
 import {View, StyleSheet} from 'react-native';
 
 import {ClockContext} from '../context/clockContext';
-import Type from '../context/type';
-import Status from '../context/status';
+import {Status, ActionType} from '../../typings/enums';
 import colors from '../constants/colors';
 import PrimaryButton from './PrimaryButton';
 import TextButton from './TextButton';
@@ -24,17 +23,20 @@ const styles = StyleSheet.create({
 function BottomBar(): JSX.Element {
   const {state, dispatch} = useContext<ClockContextType>(ClockContext);
 
-  const started = state.status !== Status.NOT_STARTED;
+  const started = state.status !== Status.NotStarted;
 
   return (
     <View style={styles.container}>
       {started && (
-        <TextButton onPress={() => dispatch({type: Type.RESET})} text="Reset" />
+        <TextButton
+          onPress={() => dispatch({type: ActionType.Reset})}
+          text="Reset"
+        />
       )}
       <PrimaryButton />
       {started && (
         <TextButton
-          onPress={() => dispatch({type: Type.NEXT_WORKOUT})}
+          onPress={() => dispatch({type: ActionType.NextWorkout})}
           text="Next"
         />
       )}

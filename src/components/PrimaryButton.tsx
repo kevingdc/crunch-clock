@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {TouchableOpacity, StyleSheet, Image} from 'react-native';
 
 import {ClockContext} from '../context/clockContext';
-import Type from '../context/type';
+import {ActionType} from '../../typings/enums';
 import colors from '../constants/colors';
 
 const buttonSize = 60;
@@ -28,7 +28,7 @@ function PrimaryButton(): JSX.Element {
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => dispatch({type: Type.NEXT_SET})}>
+      onPress={() => dispatch({type: ActionType.NextSet})}>
       <Image
         source={require('../assets/images//bicep/bicep.png')}
         style={styles.image}

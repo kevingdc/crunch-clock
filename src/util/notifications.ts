@@ -2,7 +2,7 @@ import {Platform} from 'react-native';
 import PushNotification, {Importance} from 'react-native-push-notification';
 
 import store from '../context/store';
-import Type from '../context/type';
+import {ActionType} from '../../typings/enums';
 
 export function configureNotifications(): void {
   PushNotification.createChannel(
@@ -22,7 +22,7 @@ export function configureNotifications(): void {
     onAction(notification) {
       switch (notification.action) {
         case 'Stop':
-          store.dispatch({type: Type.RESET});
+          store.dispatch({type: ActionType.Reset});
       }
     },
 

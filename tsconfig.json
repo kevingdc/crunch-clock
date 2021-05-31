@@ -15,7 +15,9 @@
     "esModuleInterop": true,
     "skipLibCheck": false,
     "resolveJsonModule": true,
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "baseUrl": ".",
+    "typeRoots": ["./node_modules/@types", "./typings"]
   },
   "exclude": [
     "node_modules",

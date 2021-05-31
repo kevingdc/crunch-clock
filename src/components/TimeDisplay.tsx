@@ -9,8 +9,7 @@ import {
 
 import {ClockContext} from '../context/clockContext';
 import useInterval from '../hooks/useInterval';
-import Status from '../context/status';
-import Type from '../context/type';
+import {Status, ActionType} from '../../typings/enums';
 import colors from '../constants/colors';
 
 const circleSize = Dimensions.get('screen').height * 0.25;
@@ -43,18 +42,18 @@ function TimeDisplay(): JSX.Element {
   const [visible, setVisible] = useState(true);
   const [start, stop, running] = useInterval(
     () => {
-      if (status === Status.RUNNING) {
+      if (status === Status.Running) {
         setVisible(true);
-        dispatch({type: Type.INCREMENT_TIME});
-      } else if (status === Status.PAUSED) {
+        dispatch({type: ActionType.IncrementTime});
+      } else if (status === Status.Paused) {
         setVisible(!visible);
       }
     },
-    status === Status.RUNNING ? 200 : 500,
+    status === Status.Running ? 200 : 500,
   );
 
   useEffect(() => {
-    if (status === Status.NOT_STARTED) {
+    if (status === Status.NotStarted) {
       setVisible(true);
       stop();
     } else if (!running) {
@@ -65,7 +64,7 @@ function TimeDisplay(): JSX.Element {
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => dispatch({type: Type.TOGGLE_CLOCK})}>
+      onPress={() => dispatch({type: ActionType.ToggleClock})}>
       <View style={styles.circle}>
         <Text style={styles.text} numberOfLines={1} adjustsFontSizeToFit>
           {visible && formatTime(state.elapsedTime)}

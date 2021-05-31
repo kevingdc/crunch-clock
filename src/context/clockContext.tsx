@@ -1,6 +1,6 @@
 import React, {createContext, useReducer} from 'react';
 
-import Status from './status';
+import {Status, ActionType} from '../../typings/enums';
 import reducer from './reducer';
 import store from './store';
 
@@ -9,7 +9,7 @@ type Props = {
 };
 
 const initialState = {
-  status: Status.NOT_STARTED,
+  status: Status.NotStarted,
   startTime: 0,
   elapsedTime: 0,
   set: 0,

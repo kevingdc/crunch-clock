@@ -1,24 +1,23 @@
-import Type from './type';
-import Status from './status';
+import {Status, ActionType} from '../../typings/enums';
 
 function reducer(state: State, action: Action): State {
   switch (state.status) {
-    case Status.NOT_STARTED:
+    case Status.NotStarted:
       return handleNotStarted(state, action);
-    case Status.RUNNING:
+    case Status.Running:
       return handleRunning(state, action);
-    case Status.PAUSED:
+    case Status.Paused:
       return handlePaused(state, action);
   }
 }
 
 function handleNotStarted(state: State, action: Action): State {
   switch (action.type) {
-    case Type.TOGGLE_CLOCK:
-    case Type.NEXT_SET:
+    case ActionType.ToggleClock:
+    case ActionType.NextSet:
       return {
         ...state,
-        status: Status.RUNNING,
+        status: Status.Running,
         set: 1,
         startTime: Date.now(),
         elapsedTime: 0,
@@ -30,17 +29,17 @@ function handleNotStarted(state: State, action: Action): State {
 
 function handleRunning(state: State, action: Action): State {
   switch (action.type) {
-    case Type.TOGGLE_CLOCK:
-      return {...state, status: Status.PAUSED};
-    case Type.NEXT_SET:
+    case ActionType.ToggleClock:
+      return {...state, status: Status.Paused};
+    case ActionType.NextSet:
       return handleNextSet(state);
-    case Type.NEXT_WORKOUT:
+    case ActionType.NextWorkout:
       return handleNextWorkout(state);
-    case Type.RESET:
+    case ActionType.Reset:
       return handleReset(state);
-    case Type.INCREMENT_TIME:
+    case ActionType.IncrementTime:
       const elapsedTime = Math.min(Date.now() - state.startTime, 3600000);
-      const status = elapsedTime < 3600000 ? Status.RUNNING : Status.PAUSED;
+      const status = elapsedTime < 3600000 ? Status.Running : Status.Paused;
 
       return {
         ...state,
@@ -54,18 +53,18 @@ function handleRunning(state: State, action: Action): State {
 
 function handlePaused(state: State, action: Action): State {
   switch (action.type) {
-    case Type.TOGGLE_CLOCK:
+    case ActionType.ToggleClock:
       const newTime = Date.now();
       return {
         ...state,
-        status: Status.RUNNING,
+        status: Status.Running,
         startTime: state.elapsedTime ? newTime - state.elapsedTime : newTime,
       };
-    case Type.NEXT_SET:
+    case ActionType.NextSet:
       return handleNextSet(state);
-    case Type.NEXT_WORKOUT:
+    case ActionType.NextWorkout:
       return handleNextWorkout(state);
-    case Type.RESET:
+    case ActionType.Reset:
       return handleReset(state);
     default:
       return state;
@@ -75,7 +74,7 @@ function handlePaused(state: State, action: Action): State {
 function handleNextSet(state: State): State {
   return {
     ...state,
-    status: Status.RUNNING,
+    status: Status.Running,
     set: state.set + 1,
     startTime: Date.now(),
     elapsedTime: 0,
@@ -85,7 +84,7 @@ function handleNextSet(state: State): State {
 function handleNextWorkout(state: State): State {
   return {
     ...state,
-    status: Status.RUNNING,
+    status: Status.Running,
     set: 1,
     startTime: Date.now(),
     elapsedTime: 0,
@@ -95,7 +94,7 @@ function handleNextWorkout(state: State): State {
 function handleReset(state: State): State {
   return {
     ...state,
-    status: Status.NOT_STARTED,
+    status: Status.NotStarted,
     set: 0,
     startTime: 0,
     elapsedTime: 0,
