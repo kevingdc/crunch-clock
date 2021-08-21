@@ -5235,6 +5235,11 @@ react-native-codegen@^0.0.6:
     jscodeshift "^0.11.0"
     nullthrows "^1.1.1"
 
+react-native-idle-timer@^2.1.6:
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/react-native-idle-timer/-/react-native-idle-timer-2.1.6.tgz#6076c9e6127aabdc8eb1e1d846014bfe3dfa7527"
+  integrity sha512-rqeU7DCbzaXN+xchw/bFatvV/keHxhY1+X//Jqjs/h6XWvhP9gV+EN6isoDNnFI7pKAN4yZJ6QTqaw5sDiEpPQ==
+
 react-native-push-notification@^7.3.1:
   version "7.3.1"
   resolved "https://registry.yarnpkg.com/react-native-push-notification/-/react-native-push-notification-7.3.1.tgz#1495feacd25169b998446dcf7b448a197ae5dca0"

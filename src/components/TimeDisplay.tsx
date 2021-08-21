@@ -6,6 +6,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
+import IdleTimerManager from 'react-native-idle-timer';
 
 import {ClockContext} from '../context/clockContext';
 import useInterval from '../hooks/useInterval';
@@ -60,6 +61,14 @@ function TimeDisplay(): JSX.Element {
       start();
     }
   }, [status, start, stop, running]);
+
+  useEffect(() => {
+    if (status === Status.Running) {
+      IdleTimerManager.setIdleTimerDisabled(true);
+    } else {
+      IdleTimerManager.setIdleTimerDisabled(false);
+    }
+  }, [status]);
 
   return (
     <TouchableOpacity
