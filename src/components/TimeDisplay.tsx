@@ -10,7 +10,7 @@ import IdleTimerManager from 'react-native-idle-timer';
 
 import {ClockContext} from '../context/clockContext';
 import useInterval from '../hooks/useInterval';
-import {Status, ActionType} from '../../typings/enums';
+import {Status, ActionType} from '../../types/enums';
 import colors from '../constants/colors';
 
 const circleSize = Dimensions.get('screen').height * 0.25;

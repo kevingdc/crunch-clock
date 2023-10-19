@@ -1,4 +1,4 @@
-import {Status, ActionType} from '../../typings/enums';
+import {Status, ActionType} from '../../types/enums';
 
 function reducer(state: State, action: Action): State {
   switch (state.status) {

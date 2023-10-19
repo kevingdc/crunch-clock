@@ -13,7 +13,9 @@ export default function useInterval(
 
   useEffect(() => {
     // start
-    if (!running) return;
+    if (!running) {
+      return;
+    }
     setRunning(true);
     const intervalId = setInterval(() => intervalCallback.current(), delay);
 

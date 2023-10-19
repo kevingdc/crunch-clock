@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {TouchableOpacity, StyleSheet, Image} from 'react-native';
 
 import {ClockContext} from '../context/clockContext';
-import {ActionType} from '../../typings/enums';
+import {ActionType} from '../../types/enums';
 import colors from '../constants/colors';
 
 const buttonSize = 60;
@@ -17,8 +17,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    width: buttonSize,
-    height: buttonSize,
+    width: buttonSize - 10,
+    height: buttonSize - 10,
   },
 });
 
@@ -30,7 +30,7 @@ function PrimaryButton(): JSX.Element {
       style={styles.container}
       onPress={() => dispatch({type: ActionType.NextSet})}>
       <Image
-        source={require('../assets/images//bicep/bicep.png')}
+        source={require('../assets/images/dumbbell/dumbbell.png')}
         style={styles.image}
         resizeMode="contain"
       />

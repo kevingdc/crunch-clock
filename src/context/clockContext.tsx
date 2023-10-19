@@ -1,6 +1,6 @@
 import React, {createContext, useReducer} from 'react';
 
-import {Status, ActionType} from '../../typings/enums';
+import {Status, ActionType} from '../../types/enums';
 import reducer from './reducer';
 import store from './store';
 

@@ -19,10 +19,13 @@ export default function useAppState(): boolean {
   }
 
   useEffect(() => {
-    AppState.addEventListener('change', _handleAppStateChange);
+    const subscription = AppState.addEventListener(
+      'change',
+      _handleAppStateChange,
+    );
 
     return () => {
-      AppState.removeEventListener('change', _handleAppStateChange);
+      subscription.remove();
     };
   }, []);
 

@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {View, StyleSheet} from 'react-native';
 
 import {ClockContext} from '../context/clockContext';
-import {Status, ActionType} from '../../typings/enums';
+import {Status, ActionType} from '../../types/enums';
 import colors from '../constants/colors';
 import PrimaryButton from './PrimaryButton';
 import TextButton from './TextButton';

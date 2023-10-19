@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 
 function SetText(): JSX.Element {
   const {state} = useContext<ClockContextType>(ClockContext);
-  const text = state.set > 0 && `Set #${state.set}`;
+  const text = state.set > 0 ? `Set #${state.set}` : ' ';
 
   return <Text style={styles.text}>{text}</Text>;
 }
